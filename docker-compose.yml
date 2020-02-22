@@ -1,0 +1,22 @@
+version: "3"
+services:
+  redis:
+    container_name: microservice_redis
+    image: redis
+    ports:
+      - 6379:6379
+  connector:
+    container_name: microservice_redis_connector
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        APP_CODE: /usr/src/microservice_redis_connector
+    depends_on:
+      - redis
+    ports:
+      - 8088:8088
+    environment:
+      ENV_APP_PORT: 8088
+      ENV_REDIS_HOST: redis
+      ENV_REDIS_PORT: 6379

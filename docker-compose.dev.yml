@@ -1,0 +1,7 @@
+version: "3"
+services:
+  connector:
+    command: npm run dev
+    volumes:
+      - /usr/src/microservice_redis_connector/node_modules
+      - ./:/usr/src/microservice_redis_connector
